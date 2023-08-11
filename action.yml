@@ -1,5 +1,11 @@
   name: set-up-env
   description: 设置环境变量
+  inputs:
+    docker:
+      description: 是否是Docker项目
+      default: false
+    docker-registry:
+      default: docker-registry
   runs:
     using: composite
     steps:
@@ -22,6 +28,13 @@
             echo "仓库名称：REPO_NAME=$repo_name"
             echo "运行次数：GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER"
             echo "引用名称：GITHUB_REF_NAME=$GITHUB_REF_NAME"
+            
+            
+            if [[ "${{ inputs.docker }}" == "true" ]] then
+              echo "Docker 项目"
+            else
+              echo "非Docker 项目"
+            fi
 
             # Set environment variables
             echo "OWNER=$owner" >> $GITHUB_ENV
