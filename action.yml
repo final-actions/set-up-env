@@ -5,7 +5,7 @@
       description: 是否是Docker项目
       default: false
     docker-registry:
-      default: docker-registry
+      default: ${{ secrets.DOCKER_REGISTRY }}
       required: true
   runs:
     using: composite
