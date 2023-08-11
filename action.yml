@@ -30,7 +30,7 @@
             echo "引用名称：GITHUB_REF_NAME=$GITHUB_REF_NAME"
             
             
-            if [[ "${{ inputs.docker }}" == "true" ]] then
+            if [[ "${{ inputs.docker }}" == "true" ]]; then
               echo "Docker 项目"
             else
               echo "非Docker 项目"
