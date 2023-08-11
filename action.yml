@@ -28,7 +28,7 @@
             parse_env
             
             sha=${{ github.sha }}
-            tag="v$GITHUB_RUN_NUMBER.$GITHUB_REF_NAME.$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
+            version="v$GITHUB_RUN_NUMBER.$GITHUB_REF_NAME.$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
             # 设置环境变量
             echo "TAG=$tag" >> $GITHUB_ENV
             # Get the full repository name
@@ -50,7 +50,7 @@
             echo "OWNER=$owner" >> $GITHUB_ENV
             echo "REPO_NAME=$repo_name" >> $GITHUB_ENV
             echo "APP_NAME=$env-$repo_name" >> $GITHUB_ENV
-            echo "TAG=$tag" >> $GITHUB_ENV
+            echo "VERSION=$version" >> $GITHUB_ENV
         - name: 打印环境变量
           shell: bash
           run: |
@@ -61,4 +61,4 @@
             echo "运行次数：GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER"
             echo "引用名称：GITHUB_REF_NAME=$GITHUB_REF_NAME"
             echo "镜像：IMAGE=$IMAGE"
-            echo "标签：TAG=$TAG"
+            echo "版本：VERSION=$VERSION"
