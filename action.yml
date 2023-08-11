@@ -5,8 +5,9 @@
       description: 是否是Docker项目
       default: false
     docker-registry:
+      description: Docker 注册地址
       default: ${{ secrets.DOCKER_REGISTRY }}
-      required: true
+      required: inputs.docker.default
   runs:
     using: composite
     steps:
