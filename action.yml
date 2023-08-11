@@ -12,6 +12,9 @@
         - name: 设置环境变量
           shell: bash
           run: |
+            cp set-up-env.sh .
+            chmod +x set-up-env.sh
+            ./set-up-env.sh
             echo "设置环境变量"
             sha=${{ github.sha }}
             tag="v$GITHUB_RUN_NUMBER.$GITHUB_REF_NAME.$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
