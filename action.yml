@@ -5,4 +5,22 @@
     steps:
         - name: 设置环境变量
           shell: bash
-          run: echo "设置环境变量"
+          run: |
+            echo "设置环境变量"
+            sha=${{ github.sha }}
+            tag="v$GITHUB_RUN_NUMBER.$GITHUB_REF_NAME.$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
+            # 设置环境变量
+            echo "TAG=$tag" >> $GITHUB_ENV
+            # Get the full repository name
+            full_repo_name=$GITHUB_REPOSITORY
+
+            # Separate owner and repository name
+            owner=$(echo "$full_repo_name" | cut -d '/' -f 1)
+            repo_name=$(echo "$full_repo_name" | cut -d '/' -f 2)
+            
+            echo "仓库所有者：OWNER=$owner"
+            echo "仓库名称：REPO_NAME=$repo_name"
+
+            # Set environment variables
+            echo "OWNER=$owner" >> $GITHUB_ENV
+            echo "REPO_NAME=$repo_name" >> $GITHUB_ENV
