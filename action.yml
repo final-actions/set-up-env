@@ -40,7 +40,7 @@
             
             if [[ "${{ inputs.docker }}" == "true" ]]; then
               echo "Docker 项目"
-              echo "IMAGE=${{ inputs.docker-registry }}/$owner/qa-$repo_name" >> $GITHUB_ENV
+              echo "IMAGE=${{ inputs.docker-registry }}/$owner/$env-$repo_name" >> $GITHUB_ENV
             else
               echo "非Docker 项目"
             fi
