@@ -41,6 +41,7 @@
             
             echo "仓库所有者：OWNER=$owner"
             echo "仓库名称：REPO_NAME=$repo_name"
+            echo "应用名称（带环境）:APP_NAME=$env-$repo_name"
             echo "运行次数：GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER"
             echo "引用名称：GITHUB_REF_NAME=$GITHUB_REF_NAME"
             echo "环境：ENV=$env"
