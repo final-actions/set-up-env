@@ -1,0 +1,19 @@
+name: ci
+
+on:
+  push:
+    branches: [ ]
+  pull_request:
+    branches: [ ]
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show GitHub Context
+        run: echo "${{ toJson(github) }}"
+      - name: 设置环境变量
+        uses: final-actions/set-up-env@main
