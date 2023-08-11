@@ -6,7 +6,6 @@
       default: false
     docker-registry:
       description: Docker 注册地址
-      default: ${{ secrets.DOCKER_REGISTRY }}
       required: inputs.docker.default
   runs:
     using: composite
