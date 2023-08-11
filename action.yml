@@ -12,9 +12,21 @@
         - name: 设置环境变量
           shell: bash
           run: |
-            cp set-up-env.sh .
-            chmod +x set-up-env.sh
-            ./set-up-env.sh
+            
+            parse_env() {
+              if [[ "${{ github.event_name }}" == "release" ]]; then
+                if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+                  env=qa
+                else
+                  env=prod
+                fi
+              else
+                env=dev
+              fi
+            }
+            
+            parse_env
+            
             echo "设置环境变量"
             sha=${{ github.sha }}
             tag="v$GITHUB_RUN_NUMBER.$GITHUB_REF_NAME.$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
@@ -31,6 +43,7 @@
             echo "仓库名称：REPO_NAME=$repo_name"
             echo "运行次数：GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER"
             echo "引用名称：GITHUB_REF_NAME=$GITHUB_REF_NAME"
+            echo "环境：ENV=$env"
             
             
             if [[ "${{ inputs.docker }}" == "true" ]]; then
