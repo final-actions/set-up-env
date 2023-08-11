@@ -1,4 +1,5 @@
   name: set-up-env
   description: 设置环境变量
   runs:
+    using: composite
     main: set-up-env.sh
