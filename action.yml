@@ -28,7 +28,7 @@
             parse_env
             
             sha=${{ github.sha }}
-            version="v$GITHUB_RUN_NUMBER.$GITHUB_REF_NAME.$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
+            version="v$GITHUB_RUN_NUMBER."$(echo $GITHUB_REF_NAME | sed 's/[^a-zA-Z0-9]/./g')".$GITHUB_ACTOR."${sha: 0:7}"."$(date "+%Y.%m.%d.%H.%M.%S")
             # 设置环境变量
             echo "TAG=$tag" >> $GITHUB_ENV
             # Get the full repository name
